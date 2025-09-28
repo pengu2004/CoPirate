@@ -14,7 +14,7 @@ def get_twitter_stats(username):
     from bs4 import BeautifulSoup
 
 
-    
+
     options = webdriver.ChromeOptions()
     options.add_argument("--headless")
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/103.0.0.0 Safari/537.36") 
@@ -35,3 +35,15 @@ def get_twitter_stats(username):
     for i, label in enumerate(Labels):
         user_data[label] = int(data[i].get_text().replace(",", ""))
     return user_data
+
+
+@app.get("/leetcode-stats/{username}")
+def get_leetcode_stats(username):
+    """
+    api to get the solutionCountDifference
+    """
+    import requests
+    data=requests.get("https://leetcode-api-pied.vercel.app/user/"+username)
+    store=data.json()
+    return (store["submitStats"]['acSubmissionNum'][0])
+

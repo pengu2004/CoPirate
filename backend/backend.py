@@ -1,6 +1,8 @@
 from fastapi import FastAPI
+from db import init_db, insert_stat, get_stats
 
 app=FastAPI()
+init_db()
 
 @app.get("/")
 def welcome():
@@ -34,16 +36,18 @@ def get_twitter_stats(username):
 
     for i, label in enumerate(Labels):
         user_data[label] = int(data[i].get_text().replace(",", ""))
+        insert_stat(username, "twitter", label, user_data[label])
     return user_data
 
 
 @app.get("/leetcode-stats/{username}")
 def get_leetcode_stats(username):
-    """
-    api to get the solutionCountDifference
-    """
+
     import requests
     data=requests.get("https://leetcode-api-pied.vercel.app/user/"+username)
     store=data.json()
-    return (store["submitStats"]['acSubmissionNum'][0])
+    solved = store["submitStats"]['acSubmissionNum'][0]['count']
+    # store in DB
+    insert_stat(username, "leetcode", "ProblemsSolved", solved)
+    return {"ProblemsSolved": solved}
 

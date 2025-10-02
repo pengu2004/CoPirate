@@ -1,3 +1,4 @@
 fastapi[standard]
-webdrivermanager
+webdriver-manager
 beautifulsoup4
+selenium

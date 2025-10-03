@@ -1,27 +1,36 @@
-import { AppBar, Toolbar, Typography, Container,Avatar } from "@mui/material";
-
+import {
+  AppBar,
+  Toolbar,
+  Typography,
+  Avatar,
+  Button,
+} from "@mui/material";
 function Header() {
   return (
-        <div>
-      <AppBar position="static" sx={{ bgcolor: 'white' }}>
+    <div>
+      <AppBar position="static" sx={{ bgcolor: "white" }}>
         <Toolbar>
-          <Avatar alt="CoPirate Logo" src="/CoPirate_logo.png" sx={{ mr: 2, bgcolor: 'grey' }} />
-          <Typography variant="h6" component="div" sx={{ flexGrow: 1 , color: '#333',fontFamily:"Lato", fontWeight: 'bold'}}>
+          <Avatar
+            alt="CoPirate Logo"
+            src="/CoPirate_logo.png"
+            sx={{ mr: 2, bgcolor: "white" }}
+          />
+          <Typography
+            variant="h6"
+            component="div"
+            sx={{
+              flexGrow: 1,
+              color: "#333",
+              fontFamily: "Lato",
+              fontWeight: "bold",
+            }}
+          >
             CoPirate
           </Typography>
+          <Button color="secondary" bgcolor="primary">Sign In</Button>
         </Toolbar>
       </AppBar>
-
-      <Container sx={{ mt: 4, textAlign: "center" }}>
-        <Typography variant="h4" gutterBottom sx={{ color: '#333' }}> 
-          Welcome to CoPirate 
-        </Typography>
-        <Typography variant="body1">
-          Your tagline or description goes here.
-        </Typography>
-      </Container>
     </div>
-
   );
 }
 
